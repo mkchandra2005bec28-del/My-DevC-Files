@@ -1,0 +1,35 @@
+  1 #include<stdio.h>
+  2 #include<string.h>
+  3 struct Student {
+  4    char name[100];
+  5    int reg_no;
+  6    int mark1, mark2, mark3, mark4;
+  7    int total;
+  8    float average;
+  9 };
+ 10 void calculate(struct Student* student) {
+ 11    student->total = student->mark1 + student->mark2 + student->mark3 + student->mark4;
+ 12    student->average = student->total / 4.0;
+ 13 }
+ 14 void display(struct Student student) {
+ 15       printf("\nName: %s\n", student.name);
+ 16       printf("Reg No: %d\n", student.reg_no);
+ 17       printf("Marks: %d, %d, %d, %d\n", student.mark1, student.mark2, student.mark3,
+ 18                            student.mark4);
+ 19       printf("Total: %d\n", student.total);
+ 20       printf("Average: %.2f\n", student.average);
+ 21 }
+ 22 int main() {
+ 23       int n,i;
+ 24       printf("Enter the number of students: ");
+ 25       scanf("%d", &n);
+ 26       struct Student students[n];
+ 27
+ 28       for (i = 0; i < n; i++) {
+ 29                     printf("\nEnter details for student %d:\n", i + 1);
+ 30                     printf("Name: ");
+ 31                     getchar();
+ 32                     fgets(students[i].name, sizeof(students[i].name), stdin);
+ 33                     students[i].name[strcspn(students[i].name, "\n")] = '\0';
+ 34                  printf("Reg No: ");
+                                                                                            1,1           Top
