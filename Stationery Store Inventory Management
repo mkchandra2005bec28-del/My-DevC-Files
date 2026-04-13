@@ -1,0 +1,70 @@
+
+   #include<stdlib.h>
+   #include<string.h>
+   struct Item {
+      int itemID;
+      char name[50];
+      int quantity;
+      float price;
+  struct Item* next;
+  };
+  struct Item* head = NULL;
+  void addItemDetails();
+  void displayItemDetails();
+  int main(){
+     int choice;
+     while(1){
+        printf("\n---- Stationery Store Inventory Management ----\n");
+        printf("1. Add Item Details\n");
+        printf("2. Display Item Details\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch(choice){
+           case 1:addItemDetails();break;
+           case 2:displayItemDetails();break;
+           case 3:printf("Exiting application...\n");return 0;
+           default:printf("Invalid choice! Try again.\n");
+        }
+     }
+     return 0;
+  }
+  void addItemDetails(){
+     struct Item* newItem=(struct Item*)malloc(sizeof(struct Item));
+     printf("\nEnter Item ID: ");
+     scanf("%d", &newItem->itemID);
+     printf("Enter Item Name: ");
+     scanf(" %[^\n]s", newItem->name);
+     printf("Enter Quantity: ");
+     scanf("%d", &newItem->quantity);
+     printf("Enter Price per Item: ");
+     scanf("%f", &newItem->price);
+     newItem->next=NULL;
+     if(head==NULL){
+        head=newItem;
+     }
+     else{
+        struct Item* temp=head;
+        while(temp->next!=NULL){
+           temp=temp->next;
+        }
+        temp->next=newItem;
+     }
+     printf("\nItem details added successfully!\n");
+  }
+  void displayItemDetails(){
+     if(head==NULL){
+       printf("No items available in the inventory.\n");
+        return;
+     }
+     struct Item* temp=head;
+        printf("\n---- Inventory Details ----\n");
+        while(temp!=NULL){
+        printf("Item ID: %d\n", temp->itemID);
+        printf("Name: %s\n", temp->name);
+        printf("Quantity: %d\n", temp->quantity);
+        printf("Price per Item: %.2f\n", temp->price);
+        printf("----------------------\n");
+           temp=temp->next;
+     }
+  }
